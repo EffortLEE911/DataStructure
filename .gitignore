@@ -398,3 +398,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+lecture01/lecture1/main.cpp
+lecture01/lecture1/test.cpp
