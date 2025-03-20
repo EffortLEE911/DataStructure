@@ -17,7 +17,7 @@ typedef struct _node {
 // Node a °¡´É
 
 
-Node* SLL_CreateNode(int NewData);
+Node* SLL_CreateNode(ElementType NewData);
 void SLL_DestroyNode(Node* Node);
 void SLL_AppendNode(Node** Head, Node* NewNode);
 Node* SLL_GetNodeAt(Node* Head, int Location);

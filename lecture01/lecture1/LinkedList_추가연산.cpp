@@ -42,6 +42,7 @@ int main() {
 
 	while (current != NULL) {
 		next = current->next_node;
+		cout << current->data << " 삭제" << endl;
 		free(current);
 		current = next;
 	}
@@ -51,7 +52,7 @@ int main() {
 
 //1. 노드의 생성
 
-Node* SLL_CreateNode(int NewData) {
+Node* SLL_CreateNode(ElementType NewData) {
 
 	Node* NewNode = (Node*)malloc(sizeof(Node)); // malloc(sizeof(자료)) 동적할당 한다는 내용
 													// 하지만 기본적으로 void형태이기 때문에 (Node*)로 적절한 형변환
