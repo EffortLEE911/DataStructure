@@ -19,7 +19,7 @@ int main() {
 		data = -99;
 		sw = -99;
 		cout << "링크드 리스트 예제 프로그램입니다." << endl;
-		cout << "0. 종료, 1. 노드 추가, 2. 노드 탐색, 3.노드 삭제, 4. 노드 삽입, 5. 노드 개수 새기" << endl;
+		cout << "0. 종료, 1. 노드 추가, 2. 노드 탐색, 3.노드 삭제, 4. 노드 삽입, 5. 노드 개수 새기"<< endl;
 		
 
 		cin >> sw;
@@ -89,7 +89,8 @@ int main() {
 				data = SLL_GetNodeCount(List);
 				cout << "현재 노드의 개수는 " << data << endl;
 				break;
-		
+
+
 		}
 
 		current = List;
@@ -196,7 +197,7 @@ void SLL_RemoveNode(Node** Head, Node* Remove)
 	else
 	{
 		Node* Current = *Head;	//현재 노드를 List의 가장 앞으로 설정(Head로 설정)
-		while (Current != NULL && Current->next_node!=Remove)
+		while (Current != NULL && Current->next_node!=Remove) //Current!=NULL인 이유는 삭제하고 싶은 데이터가 없을 경우 NULL포인터 접근하지 않게 안전을 위해 존재.
 		{
 			Current = Current->next_node;	//노드를 삭제하고 싶은 위치까지 이동
 		}
@@ -236,3 +237,4 @@ int SLL_GetNodeCount(Node* Head)
 	return Count;
 
 }
+
