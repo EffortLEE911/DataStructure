@@ -1,5 +1,5 @@
-#ifndef DOUBLE_LINKEDLIST_H
-#define DOUBLE_LINKEDLIST_H
+#ifndef DOUBLY_LINKEDLIST_H
+#define DOUBLY_LINKEDLIST_H
 
 
 typedef int ElementType; // 확장성 때문에

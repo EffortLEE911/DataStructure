@@ -1,14 +1,16 @@
 ﻿#include <iostream>
-#include "DoubleLinkedList.h"
+#include "DoublyLinkedList.h"
 
 using namespace std;
 
 int main()
 {
 	int i = 10;
+	int count = 0;
+
 	Node* List = NULL;
 	Node* NewNode = NULL;
-
+	
 	Node* current = NULL;
 	Node* next = NULL;
 
@@ -24,8 +26,6 @@ int main()
 	}
 	cout << endl;
 	cout << "노드 " << i <<"개 생성" << endl << endl;
-
-
 
 
 	//노드삭제
@@ -58,8 +58,9 @@ int main()
 	}
 	cout << endl<<endl;
 
+	count = DLL_GetNodeCount(List);
 	//노드 삽입 
-	current = DLL_GetNodeAt(List, 6);
+	current = DLL_GetNodeAt(List, count-1);
 	cout << "현재 노드의 값은 " << current->data << endl;
 	NewNode = DLL_CreateNode(300);
 	DLL_InsertAfter(current, NewNode);
@@ -196,15 +197,16 @@ void DLL_RemoveNode(Node** Head, Node* Remove) {
 //5. 노드 삽입
 void DLL_InsertAfter(Node* Current, Node* NewNode)
 {
-	NewNode->next_node = Current->next_node;
 	NewNode->pre_node = Current;
-
+	NewNode->next_node = Current->next_node;
+	
 	if (Current->next_node != NULL) 
 	{
 		Current->next_node->pre_node = NewNode;
-		Current->next_node = NewNode;
 	}
 
+	Current->next_node = NewNode; 
+	//책에 적혀 있는대로 if문 안에 있으면 마지막 Node에서 추가가 안됨, 그래서 if문 아래로 빼야함 
 
 }
 
