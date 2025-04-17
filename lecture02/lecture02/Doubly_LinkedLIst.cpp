@@ -105,7 +105,7 @@ int main()
 }
 
 //1. 노드생성
-Node* DLL_CreateNode(ElementType NewData)
+Node* DLL_CreateNode(Element NewData)
 {
 
 	Node* NewNode = (Node*)malloc(sizeof(Node));
