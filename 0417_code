@@ -1,0 +1,142 @@
+#include <iostream>
+#include "DoublyLinkedList.h"
+
+using namespace std;
+
+int main()
+{
+    Node* List = NULL;
+    Node* NewNode = NULL;
+    Node* Current = NULL;
+
+    //노드 5개 생성하고 append하기 
+    // for문을 사용하고, 값은 10 30 50 70 90;
+    for (int i = 0; i < 5; i++) 
+    {
+        NewNode = DLL_CreateNode(20 * i + 10);
+        DLL_AppendNode(&List, NewNode);
+    }
+
+    Current = List;
+    while (Current->next_node!=NULL) 
+    {
+        cout << Current->data << "->";
+        Current = Current->next_node;
+
+    }
+    //거꾸로 data를 찍어보기
+    
+    while (Current!= NULL )
+    {
+        cout << Current->data << "->";
+        Current = Current->pre_node;
+    }
+    
+    cout << endl << endl;
+    //약식 삭제
+    Node* Next = NULL;
+
+    Current = List;
+
+    while (Current != NULL) {
+
+        Next = Current->next_node;
+        cout << Current->data << "삭제" << endl;
+        free(Current);
+        Current = Next;
+
+    }
+
+
+
+
+}
+
+//1. 노드 생성
+Node* DLL_CreateNode(Element NewData) 
+{
+    Node* NewNode = (Node*)malloc(sizeof(Node));
+    //NewNode의 데이터는 NewData이다.
+    NewNode->data = NewData;
+    
+    //NewNode의 이전 주소는 NULL
+    NewNode->pre_node= NULL;
+    
+    //NewNode의 다음 주소는 NULL
+    NewNode->next_node = NULL;
+    
+    //NewNode를 반환하라
+    return NewNode;
+
+}
+
+
+//2.노드의 생성
+void DLL_AppendNode(Node** Head, Node* NewNode) {
+
+    //만약 *Head에 아무것도 없다면
+    if ( *Head == NULL) {
+        //*Head가 새로운 노드이다.
+        *Head = NewNode;
+    }
+    else {
+
+        Node* Tail = *Head;
+
+        //Tail의 다음노드가 NULL이 아닐때 까지 반복
+        while (Tail->next_node != NULL ) {
+            //Tail을 Tail의 다음 노드로 이동해라.
+            Tail = Tail->next_node;
+        }
+
+        //위의 반복문이 끝나면 연결리스트의 
+        // 마지막Node로 이동이 된다.
+        
+        // 마지막 Node에서 새로운 노드를 연결해라.
+        Tail->next_node = NewNode;
+        NewNode->pre_node = Tail;
+
+
+    }
+
+}
+
+//3. 노드의 탐색
+Node* DLL_GetNodeAt(Node* Head, int Location) {
+
+    Node* Current = Head;
+                                    
+    while ( Current!=NULL && (--Location)>=0) {
+        Current = Current->next_node;
+    }
+
+    return Current;
+
+}
+
+
+
+//========================아래는 헤더파일 =========================
+
+
+//"DoublyLinkedList.h" 헤더파일 이름
+
+
+#ifndef DOUBLY_LINKED_LIST
+#define DOUBLY_LINKED_LIST
+
+typedef int Element;
+
+typedef struct _node {
+
+    Element data;
+    struct _node* pre_node;
+    struct _node* next_node;
+
+}Node;
+
+Node* DLL_CreateNode(Element NewData);
+void DLL_AppendNode(Node** Head, Node* NewNode);
+Node* DLL_GetNodeAt(Node* Head, int Location);
+
+#endif
