@@ -400,3 +400,4 @@ FodyWeavers.xsd
 *.sln.iml
 lecture01/lecture1/main.cpp
 lecture01/lecture1/test.cpp
+lecture02/lecture02/test.cpp

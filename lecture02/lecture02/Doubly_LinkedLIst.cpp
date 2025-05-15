@@ -58,8 +58,25 @@ int main()
 	}
 	cout << endl<<endl;
 
-	count = DLL_GetNodeCount(List);
+	//
+	//노드삭제 3 
+	current = DLL_GetNodeAt(List, 0);
+	cout << "현재 값" << current->data << " 삭제" << endl;
+	DLL_RemoveNode(&List, current);
+	free(current);
+	cout << "현재 노드의 갯수는 : " << DLL_GetNodeCount(List) << endl;
+
+	current = List;
+	while (current != NULL)
+	{
+		cout << current->data << "->";
+		current = current->next_node;
+	}
+	cout << endl << endl;
+
 	//노드 삽입 
+	count = DLL_GetNodeCount(List);
+	
 	current = DLL_GetNodeAt(List, count-1);
 	cout << "현재 노드의 값은 " << current->data << endl;
 	NewNode = DLL_CreateNode(300);
@@ -92,7 +109,8 @@ int main()
 	cout << endl << endl;
 	cout << "==========삭제==========" << endl;
 
-	for (int j = 0; j < i - 1; j++)
+	count = DLL_GetNodeCount(List);
+	for (int j = 0; j < count; j++)
 	{
 		current = DLL_GetNodeAt(List, 0);
 		DLL_RemoveNode(&List, current);
