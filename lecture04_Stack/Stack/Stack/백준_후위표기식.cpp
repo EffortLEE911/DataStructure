@@ -10,7 +10,9 @@ int main() {
 	unordered_map<char, int> dict;
 	vector<char> stack;
 
-	string s = "A+B*(C-D)+B/E";
+	//"A+B*(C-D)+B/E"
+	string s = "A*B+(C-D)/D";
+
 	string answer = "";
 
 	/*cin >> s;*/

@@ -30,6 +30,9 @@
     <ClCompile Include="LinkedList_추가삽입삭제.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="동적할당연습.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LinkedList.h">
