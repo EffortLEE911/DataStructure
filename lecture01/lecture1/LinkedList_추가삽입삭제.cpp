@@ -169,12 +169,25 @@ Node* SLL_GetNodeAt(Node* Head, int Location) {
 
 	Node* Current = Head;
 
-	while (Current != NULL && (--Location) >= 0) // --Location 전위연산자, Location++후위 연산자.
+	for (int i = 0; i < Location; i++)
 	{
-		Current = Current->next_node;
+		if (Current == NULL)
+		{
+			break;
+		}
+		else
+		{
+			Current = Current->next_node;
+		}
 	}
 
+	//while (Current != NULL && (--Location) >= 0)  // --Location 전위연산자, Location++후위 연산자.
+	//{
+	//	Current = Current->next_node;
+	//}
+
 	return Current;
+
 }
 
 //4. 노드의 삭제
@@ -182,7 +195,8 @@ void SLL_RemoveNode(Node** Head, Node* Remove)
 {
 	if (*Head == Remove)
 	{
-		*Head = Remove->next_node;	//삭제하고 싶은 위치가 가장 앞의 노드라면, 가장 앞의 노드의 연결을 끊고, 그 다음 노드를 head로 지정
+		*Head = (*Head)->next_node;	//삭제하고 싶은 위치가 가장 앞의 노드라면, 가장 앞의 노드의 연결을 끊고, 그 다음 노드를 head로 지정
+		Remove->next_node = NULL; //미래 확장성을 위해 연결 제거
 	}
 	else
 	{
