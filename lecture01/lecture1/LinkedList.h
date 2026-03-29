@@ -3,11 +3,11 @@
 
 // __LINKED.....  << __ 이유는 기본 헤더파일과 충돌을 피하기 위해 현대 스타일은 없애는 추세
 
-typedef int ElementType; //확장성 때문에 
+typedef int Element; //확장성 때문에 
 
 
 typedef struct _node {
-	ElementType data;
+	Element data;
 	struct _node* next_node;
 } Node;
 
@@ -17,13 +17,14 @@ typedef struct _node {
 // Node a 가능
 
 
-Node* SLL_CreateNode(ElementType NewData); 
+Node* SLL_CreateNode(Element NewData); 
 void SLL_DestroyNode(Node* Node);
 void SLL_AppendNode(Node** Head, Node* NewNode);
 Node* SLL_GetNodeAt(Node* Head, int Location);
 void SLL_RemoveNode(Node** Head, Node* Remove);
 void SLL_InsertAfter(Node* Current, Node* NewNode);
 int SLL_GetNodeCount(Node* Head);
+void ShowList(Node* Head);
 
 
 

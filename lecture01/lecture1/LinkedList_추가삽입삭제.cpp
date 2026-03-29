@@ -93,12 +93,7 @@ int main() {
 
 		}
 
-		current = List;
-		while (current != NULL) {
-			cout << current->data << "->";
-			current = current->next_node;
-		}
-		cout << endl<<endl;
+		ShowList(List);
 		
 		if (sw == 0)
 		{
@@ -109,12 +104,7 @@ int main() {
 
 	}
 
-	current = List;
-	while (current != NULL) {
-		cout << current->data << "->";
-		current = current->next_node;
-	}
-	cout << endl;
+	ShowList(List);
 	cout << "======삭제======" << endl;
 
 	count = SLL_GetNodeCount(List);
@@ -140,7 +130,7 @@ int main() {
 
 //1. 노드의 생성
 
-Node* SLL_CreateNode(ElementType NewData) {
+Node* SLL_CreateNode(Element NewData) {
 
 	Node* NewNode = (Node*)malloc(sizeof(Node)); // malloc(sizeof(자료)) 동적할당 한다는 내용
 	NewNode->data = NewData;					// 하지만 기본적으로 void형태이기 때문에 (Node*)로 적절한 형변환
@@ -205,6 +195,7 @@ void SLL_RemoveNode(Node** Head, Node* Remove)
 		if (Current != NULL)
 		{
 			Current->next_node = Remove->next_node;	//삭제 위치 이전 노드에서 삭제위치 노드의 주소를 끊고, 삭제노드 다음 노드와 연결
+			Remove->next_node = NULL;
 		}
 
 	}
@@ -226,7 +217,7 @@ void SLL_InsertAfter(Node* Current, Node* NewNode)
 //6. 노드의 개수 세기 
 int SLL_GetNodeCount(Node* Head) 
 {
-	int Count = 0;
+	int Count = 0; 
 	Node* Current = Head;
 
 	while (Current != NULL) {
@@ -238,3 +229,16 @@ int SLL_GetNodeCount(Node* Head)
 
 }
 
+
+//7. 리스트 출력하기
+void ShowList(Node* Head)
+{
+	Node* current = Head;
+	while (current != NULL)
+	{
+		cout << current->data << "->";
+		current = current->next_node;
+	}
+	cout << endl << endl;
+
+}
