@@ -18,13 +18,8 @@ int main()
 		NewNode = DLL_CreateNode(10*j);
 		DLL_AppendNode(&List, NewNode);
 	}
-	current = List;
-	while (current!= NULL)
-	{
-		cout << current->data << "->";
-		current = current->next_node;
-	}
-	cout << endl;
+	
+	ShowList(List);
 	cout << "노드 " << i <<"개 생성" << endl << endl;
 
 
@@ -35,13 +30,7 @@ int main()
 	free(current);
 	cout << "현재 노드의 갯수는 : " << DLL_GetNodeCount(List) <<  endl;
 
-	current = List;
-	while (current != NULL)
-	{
-		cout << current->data << "->";
-		current = current->next_node;
-	}
-	cout << endl<<endl;
+	ShowList(List);
 
 
 	//노드 삭제2
@@ -50,13 +39,7 @@ int main()
 	DLL_RemoveNode(&List, current);
 	free(current);	
 
-	current = List;
-	while (current != NULL)
-	{
-		cout << current->data << "->";
-		current = current->next_node;
-	}
-	cout << endl<<endl;
+	ShowList(List);
 
 	//
 	//노드삭제 3 
@@ -66,13 +49,7 @@ int main()
 	free(current);
 	cout << "현재 노드의 갯수는 : " << DLL_GetNodeCount(List) << endl;
 
-	current = List;
-	while (current != NULL)
-	{
-		cout << current->data << "->";
-		current = current->next_node;
-	}
-	cout << endl << endl;
+	ShowList(List);
 
 	//노드 삽입 
 	count = DLL_GetNodeCount(List);
@@ -82,13 +59,7 @@ int main()
 	NewNode = DLL_CreateNode(300);
 	DLL_InsertAfter(current, NewNode);
 	
-	current = List;
-	while (current != NULL)
-	{
-		cout << current->data << "->";
-		current = current->next_node;
-	}
-	cout << endl << endl;
+	ShowList(List);
 
 	//노드의 탐색
 	cout << "노드의 탐색을 시작합니다" << endl;
@@ -99,7 +70,7 @@ int main()
 		current = current->next_node;
 	}
 	
-
+	//뒤에서 앞으로 탐색
 	while (current!= NULL)
 	{
 		cout << current->data << "->";
@@ -108,7 +79,7 @@ int main()
 
 	cout << endl << endl;
 	cout << "==========삭제==========" << endl;
-
+	
 	count = DLL_GetNodeCount(List);
 	for (int j = 0; j < count; j++)
 	{
@@ -146,7 +117,8 @@ void DLL_AppendNode(Node** Head, Node* NewNode) {
 		*Head = NewNode;
 	}
 
-	else {
+	else 
+	{
 
 		Node* Tail = *Head;
 
@@ -167,10 +139,22 @@ Node* DLL_GetNodeAt(Node* Head, int Location) {
 
 	Node* Current = Head;
 
-	while (Current != NULL && (--Location) >= 0) 
+	for (int i = 0; i < Location; i++)
 	{
-		Current = Current->next_node;
+		if (Current == NULL)
+		{
+			break;
+		}
+		else
+		{
+			Current = Current->next_node;
+		}
 	}
+
+	//while (Current != NULL && (--Location) >= 0)  // --Location 전위연산자, Location++후위 연산자.
+	//{
+	//	Current = Current->next_node;
+	//}
 
 	return Current;
 
@@ -244,3 +228,15 @@ int DLL_GetNodeCount(Node* Head)
 
 }
 
+//7. 리스트 출력하기
+void ShowList(Node* Head)
+{
+	Node* current = Head;
+	while (current != NULL)
+	{
+		cout << current->data << "->";
+		current = current->next_node;
+	}
+	cout << endl << endl;
+
+}

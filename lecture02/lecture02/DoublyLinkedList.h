@@ -18,6 +18,7 @@ Node* DLL_GetNodeAt(Node* Head, int Location);
 void DLL_RemoveNode(Node** Head, Node* Remove); 
 void DLL_InsertAfter(Node* Current, Node* NewNode);
 int DLL_GetNodeCount(Node* Head);
+void ShowList(Node* Head);
 
 
 #endif
