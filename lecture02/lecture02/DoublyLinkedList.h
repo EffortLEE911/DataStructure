@@ -13,7 +13,7 @@ typedef struct _node {
 }Node;
 
 Node* DLL_CreateNode(Element NewData);
-void DLL_AppendNode(Node** Head, Node* Node);
+void DLL_AppendNode(Node** Head, Node* NewNode);
 Node* DLL_GetNodeAt(Node* Head, int Location);
 void DLL_RemoveNode(Node** Head, Node* Remove); 
 void DLL_InsertAfter(Node* Current, Node* NewNode);

@@ -162,14 +162,15 @@ Node* DLL_GetNodeAt(Node* Head, int Location) {
 
 
 //4. 노드 삭제
-void DLL_RemoveNode(Node** Head, Node* Remove) {
+void DLL_RemoveNode(Node** Head, Node* Remove) 
+{
 
 	if (*Head == Remove) 
 	{
 		*Head = (*Head)->next_node;
 		if (*Head != NULL) 
 		{
-			(*Head)->pre_node = NULL;
+			(*Head)->pre_node = NULL; // Head 이전 후, pre_node의 연결 끊기.
 		}
 
 		Remove->next_node = NULL;
@@ -178,15 +179,16 @@ void DLL_RemoveNode(Node** Head, Node* Remove) {
 	}
 	else 
 	{
-		Node* Temp = Remove; //Temp는 임시 포인터, 이를 활용하여 원하는 Node 제거
-		if (Remove->pre_node != NULL) 
-		{
-			Remove->pre_node->next_node = Temp->next_node;
-		}
+		Node* Tmp = Remove; //Tmp는 임시 포인터, 이를 활용하여 원하는 Node 제거
+							// tmp라는 변수를 추가 하지 않아도 제대로 작동하지만, 가독성과 안전성을 위해 추가한 것.
 
+		if (Remove->pre_node != NULL) //삭제하고 싶은 위치에서 pre_node가 NULL일 경우는 Head일 때 밖에 없어서 이 코드는 없어도 됩니다.
+		{							  // 다만 코드의 안정성, 일관성을 위해 추가된 것.
+			Remove->pre_node->next_node = Tmp->next_node;
+		}
 		if (Remove->next_node != NULL)
 		{
-			Remove->next_node->pre_node = Temp->pre_node;
+			Remove->next_node->pre_node = Tmp->pre_node;
 		}
 
 		Remove->next_node = NULL;
@@ -199,6 +201,7 @@ void DLL_RemoveNode(Node** Head, Node* Remove) {
 //5. 노드 삽입
 void DLL_InsertAfter(Node* Current, Node* NewNode)
 {
+	//순서가 중요합니다. 순서가 꼬이면 작동하지않아요.
 	NewNode->pre_node = Current;
 	NewNode->next_node = Current->next_node;
 	
