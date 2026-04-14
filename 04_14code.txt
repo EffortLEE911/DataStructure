@@ -1,0 +1,82 @@
+#include <iostream>
+#include "DoublyLinkedList.h"
+
+using namespace std;
+
+int main()
+{
+	Node* List = NULL;
+	Node* current = NULL;
+	Node* new_node = NULL;
+
+
+	List = DLL_CreateNode(10);
+	new_node = DLL_CreateNode(20);
+
+	List->next_node = new_node;
+	new_node->pre_node = List;
+
+
+	cout << new_node->pre_node->data << endl;
+	cout << List->next_node->data << endl;
+
+	//2. 노드 연결
+	new_node = DLL_CreateNode(30);
+	DLL_AppendNode(&List, new_node );
+
+	ShowList(List);
+	
+}
+
+//1. 노드의 생성
+Node* DLL_CreateNode(Element NewData)
+{
+	Node* NewNode = (Node*)malloc(sizeof(Node));
+	NewNode->data = NewData;
+	NewNode->next_node = NULL;
+	NewNode->pre_node = NULL;
+
+	return NewNode;
+}
+
+//2. 노드의 연결
+void DLL_AppendNode(Node** Head, Node* NewNode)
+{
+	if (*Head == NULL)
+	{
+		// 단일 연결리스트와 동일함
+		*Head = NewNode;
+	}
+	else
+	{
+		//방금 main함수에 만들었던 //2. 노드의 연결을 보고 만들면됨
+		Node* Tail = *Head;
+		while (Tail->next_node != NULL) 
+		{
+			Tail = Tail->next_node;
+		}
+		Tail->next_node = NewNode;
+		NewNode->pre_node = Tail;
+
+	}
+
+
+}
+
+
+
+
+
+
+//7. 리스트 출력하기
+void ShowList(Node* Head)
+{
+	Node* Current = Head;
+
+	while (Current != NULL)
+	{
+		cout << Current->data << " -> ";
+		Current = Current->next_node;
+	}
+	cout << endl << endl;
+}
