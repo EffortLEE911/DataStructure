@@ -1,0 +1,133 @@
+#include <iostream>
+#include "DoublyLinkedList.h"
+
+using namespace std;
+
+int main()
+{
+	Node* List = NULL; //연결 리스트를 관리할 포인터
+	Node* new_node = NULL; //새로운 노드를 받아줄 포인터
+	Node* current = NULL; //특정위치를 표현하기 위한 포인터
+
+	for (int i = 1; i < 6; i++)
+	{
+		new_node = DLL_CreateNode(10 * i);
+		DLL_AppendNode(&List, new_node);
+	}
+
+	ShowList(List);
+
+	//2. 노드의 삭제(main)
+	current = DLL_GetNodeAt(List, 2);
+	DLL_RemoveNode(&List, current);
+	free(current);
+
+	ShowList(List);
+
+
+}
+
+//1. 노드의 생성
+Node* DLL_CreateNode(int NewData)
+{
+	Node* NewNode = (Node*)malloc(sizeof(Node));
+	NewNode->data = NewData;
+	NewNode->next_node = NULL;
+	NewNode->pre_node = NULL;
+
+	return NewNode;
+}
+
+//2. 노드의 연결
+void DLL_AppendNode(Node** Head, Node* NewNode)
+{
+
+	if (*Head == NULL)
+	{
+		*Head = NewNode;
+	}
+	else
+	{
+		//1. 노드 연결(main)코드를 보고 작성
+		Node* Tail = *Head;
+
+		while (Tail->next_node != NULL)
+		{
+			Tail = Tail->next_node;
+		}
+		Tail->next_node = NewNode;
+		NewNode->pre_node = Tail;
+
+	}
+
+}
+
+//3. 노드의 탐색
+Node* DLL_GetNodeAt(Node* Head, int Location) 
+{
+	Node* Current = Head;
+
+	for (int i = 0;i < Location;i++)
+	{
+		if (Current == NULL)
+		{
+			break;
+		}
+		else
+		{
+			Current = Current->next_node;
+		}
+	}
+
+	return Current;
+}
+
+//4. 노드의 삭제
+void DLL_RemoveNode(Node** Head, Node* Remove) 
+{
+	if (*Head == Remove)
+	{
+		*Head = (*Head)->next_node;
+		if (*Head != NULL)
+		{
+			(*Head)->pre_node = NULL;
+		}
+
+		Remove->pre_node = NULL;
+		Remove->next_node = NULL;
+	}
+	else
+	{
+		Node* Tmp = Remove;
+		
+		if (Remove->pre_node != NULL)
+		{
+			Remove->pre_node->next_node = Tmp->next_node;
+		}
+		if (Remove->next_node != NULL)
+		{
+			Remove->next_node->pre_node = Tmp->pre_node;
+		}
+		Remove->pre_node = NULL;
+		Remove->next_node = NULL;
+
+	}
+
+
+}
+
+
+//7.리스트 출력
+void ShowList(Node* Head)
+{
+
+	Node* Current = Head;
+
+	while (Current != NULL)
+	{
+		cout << Current->data << " -> ";
+		Current = Current->next_node;
+	}
+	cout << endl << endl;
+
+}
