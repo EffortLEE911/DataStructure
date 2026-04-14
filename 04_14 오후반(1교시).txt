@@ -1,0 +1,64 @@
+#include <iostream>
+#include "DoublyLinkedList.h"
+
+using namespace std;
+
+int main()
+{
+	Node* List = NULL; //연결 리스트를 관리할 포인터
+	Node* new_node = NULL; //새로운 노드를 받아줄 포인터
+	Node* current = NULL; //특정위치를 표현하기 위한 포인터
+
+
+	new_node = DLL_CreateNode(20);
+	List = DLL_CreateNode(10);
+
+	//연결
+	List->next_node = new_node;
+	new_node->pre_node = List;
+
+
+	//1. 노드 연결 (main)
+	new_node = DLL_CreateNode(30);
+	Node* Tail = List;
+
+	while (Tail->next_node != NULL)
+	{
+		Tail = Tail->next_node;
+	}
+	Tail->next_node = new_node;
+	new_node->pre_node = Tail;
+
+	ShowList(List);
+
+
+}
+
+//1. 노드의 생성
+Node* DLL_CreateNode(int NewData)
+{
+	Node* NewNode = (Node*)malloc(sizeof(Node));
+	NewNode->data = NewData;
+	NewNode->next_node = NULL;
+	NewNode->pre_node = NULL;
+
+	return NewNode;
+}
+
+
+
+
+//7.리스트 출력
+void ShowList(Node* Head)
+{
+
+	Node* Current = Head;
+
+	while (Current != NULL)
+	{
+		cout << Current->data << " -> ";
+		Current = Current->next_node;
+	}
+	cout << endl << endl;
+
+}
