@@ -14,19 +14,21 @@ typedef struct node {
 
 int main() 
 {
-	int i = 10;
-	int* j = &i;
-	int** k = &j;
+	int data = 10;
 
-	cout << "i의 값은 : " << i << endl;
-	cout << "i의 주소는 : " << &i << endl << endl;
+	int* ptr = &data;
 
-	cout << "포인터 j의 값은 : " << j << endl;
-	cout << "포인터 j의 주소는 : " << &j << endl;
-	cout << "포인터 *j(j가 참조하는 값)은 : " << *j << endl<<endl;
+	int** double_p = &ptr;
 
-	cout << "이중 포인터 k의 값은 : " << k << endl;
-	cout << "이중포인터 *k의 값은 : " << *k << endl;
+	cout << "data의 값은 : " << data << endl;
+	cout << "data의 주소는 : " << &data << endl << endl;
+
+	cout << "포인터 ptr의 값은 : " << ptr << endl;
+	cout << "포인터 ptr의 주소는 : " << &ptr << endl;
+	cout << "포인터 *ptr(ptr이 역참조하는 값)은 : " << *ptr << endl << endl;
+
+	cout << "이중 포인터 double_p의 값은 : " << double_p << endl;
+	cout << "이중포인터 *double_p의 값은 : " << *double_p << endl;
 
 
 	cout<<endl<<endl <<"=======================" << endl << endl;
