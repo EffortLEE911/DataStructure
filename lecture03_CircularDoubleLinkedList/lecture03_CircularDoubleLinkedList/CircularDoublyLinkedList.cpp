@@ -19,15 +19,7 @@ int main()
 	
 	Current = List;
 
-	while (true) {
-		cout << Current->data << "->";
-		Current = Current->next_node;
-		if (Current == List) {
-			break;
-		}
-	}
-
-	cout << endl << endl;
+	ShowList(List);
 
 	//삭제연산 테스트 1번 2번은 앞에서 삭제 , 3번은 index번호 3번 삭제(4번째 node삭제)
 	Current = CDLL_GetNodeAt(List, 0);
@@ -47,17 +39,7 @@ int main()
 	
 	Current = List;
 
-	while (Current != NULL)
-	{
-		cout << Current->data << "->";
-		Current = Current->next_node;
-
-		if (Current == List)
-		{
-			break;
-		}
-	}
-	cout << endl<<endl<<endl;
+	ShowList(List);
 
 	//삽입 연산 확인
 
@@ -75,17 +57,7 @@ int main()
 
 	Current = List;
 
-	while (Current!=NULL) 
-	{
-		cout << Current->data << "->";
-		Current = Current->next_node;
-
-		if (Current == List) 
-		{
-			break;
-		}
-	}
-	cout << endl;
+	ShowList(List);
 
 
 	//동적할당 해제
@@ -137,8 +109,8 @@ void CDLL_AppendNode(Node** Head, Node* NewNode) {
 	{
 		Node* Tail = (*Head)->pre_node;
 		
-		//책은 아래처럼 표현했는데, 밑에 표현이 좀 더 쉬운 것 같아서 아래로 바꿈 실행결과는 같음
-		//Tail->next_node->pre_node = NewNode;
+		//기존 이중 연결리스트에서는 가장 뒤까지 while문을 타고 들어가야했는데,
+		//맨 뒤의 위치(Tail)를 알기 때문에 while반복문을 사용하지 않는다.
 
 		(*Head)->pre_node = NewNode;
 		Tail->next_node = NewNode;
@@ -155,7 +127,8 @@ Node* CDLL_GetNodeAt(Node* Head, int Location) {
 
 	Node* Current = Head;
 
-	while (Current != NULL && (--Location) >= 0) {
+	for(int i=0; i<Location; i++)
+	{
 		
 		Current = Current->next_node;
 
@@ -174,8 +147,8 @@ Node* CDLL_GetNodeAt(Node* Head, int Location) {
 }
 
 //4. 노드 삭제
-void CDLL_RemoveNode(Node** Head, Node* Remove) {
-
+void CDLL_RemoveNode(Node** Head, Node* Remove) 
+{
 	if (*Head == Remove) {
 
 		(*Head)->pre_node->next_node = Remove->next_node;
@@ -189,16 +162,18 @@ void CDLL_RemoveNode(Node** Head, Node* Remove) {
 	}
 	else {
 
+		//이중 연결리스트와 다르게 완벽하게 리스트들이 연결되어 있다면 빈 공간이 없기 때문에 
+		//예외처리 하지 않아도 된다.
+		
+		Node* Tmp = Remove;
 
-		Remove->next_node->pre_node = Remove->pre_node;
-		Remove->pre_node->next_node = Remove->next_node;
+		Remove->next_node->pre_node = Tmp->pre_node;
+		Remove->pre_node->next_node = Tmp->next_node;
 
 		Remove->next_node = NULL;
 		Remove->pre_node = NULL;
 
 	}
-
-
 }
 
 //5. 노드 중간 추가.
@@ -233,4 +208,23 @@ int CDLL_GetNodeCount(Node* Head) {
 
 	}
 	return Count;
+}
+
+
+
+void ShowList(Node* Head)
+{
+	Node* current = Head;
+	while (current != NULL)
+	{
+		cout << current->data << "->";
+		current = current->next_node;
+
+		if (current == Head)
+		{
+			break;
+		}
+	}
+	cout << endl << endl;
+
 }

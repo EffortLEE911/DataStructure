@@ -17,6 +17,7 @@ Node* CDLL_GetNodeAt(Node* Head, int Location);
 void CDLL_RemoveNode(Node** Head, Node* Remove);
 void CDLL_InsertAfter(Node* Current, Node* NewNode);
 int CDLL_GetNodeCount(Node* Head);
+void ShowList(Node* Head);
 
 
 #endif
