@@ -19,12 +19,13 @@ int main() {
 	 
 	dict.insert({ '+',1 });
 	dict.insert(make_pair( '-',1 ));
+	//dict['+'] = 1;
 
 	dict.insert({ '*',2 });
 	dict.insert(make_pair('/', 2));
 
 	
-	dict.insert({ '(',0 });
+	//dict.insert({ '(',0 });
 
 	for (int i = 0; i < s.size(); i++)
 	{	
@@ -71,7 +72,7 @@ int main() {
 				}
 				stack.push_back(s[i]);
 			}
-
+			aaaaaaaaaaaaaa
 		}
 
 	
