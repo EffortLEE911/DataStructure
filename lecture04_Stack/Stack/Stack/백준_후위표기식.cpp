@@ -25,8 +25,20 @@ int main() {
 	dict.insert(make_pair('/', 2));
 
 	
-	//dict.insert({ '(',0 });
+	////만약 숫자를 문자열로 받아온다면? 아래처럼 예외처리를 통해 알고리즘 실행 가능.
+	////숫자면 출력, 숫자가 아닌 +,-,*,/ 면 예외처리를 통해 진행
+	//int tmp = 0;
 
+	//try {
+	//	tmp = stoi("a");
+	//}
+	//catch (const exception& e) // ...은 모든 에러, exception e 는 에러 출력해보기
+	//{
+	//	cout << "숫자가 아닙니다. e.what() :" << e.what() << endl;
+	//	
+	//}
+	//cout << "heel";
+		
 	for (int i = 0; i < s.size(); i++)
 	{	
 		// 알파벳 A ~ Z 일경우 바로 출력준비를 해준다.
@@ -72,7 +84,7 @@ int main() {
 				}
 				stack.push_back(s[i]);
 			}
-			aaaaaaaaaaaaaa
+			
 		}
 
 	
