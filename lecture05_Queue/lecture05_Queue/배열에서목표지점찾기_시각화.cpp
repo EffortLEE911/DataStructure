@@ -15,7 +15,7 @@ int main()
     int start_pos = 3; // 시작 위치
     int target = 8; // 타겟 위치
 
-    int dump = 0;
+    string dump = "";
 
     vector<int> arr; //맵 정의를 할 vector
     deque<int> dq;

@@ -11,8 +11,8 @@ int main() {
 	vector<char> stack;
 
 	//"A+B*(C-D)+B/E"
-	string s = "A*B+(C-D)/D";
-
+	//string s = "A*B+(C-D)/D";
+	string s = "A*B+(A*C+B*D)";
 	string answer = "";
 
 	/*cin >> s;*/
@@ -23,6 +23,8 @@ int main() {
 
 	dict.insert({ '*',2 });
 	dict.insert(make_pair('/', 2));
+
+	cout << dict['k'] << endl;
 
 	
 	////만약 숫자를 문자열로 받아온다면? 아래처럼 예외처리를 통해 알고리즘 실행 가능.
@@ -41,6 +43,7 @@ int main() {
 		
 	for (int i = 0; i < s.size(); i++)
 	{	
+		
 		// 알파벳 A ~ Z 일경우 바로 출력준비를 해준다.
 		if (s[i] >= 'A' && s[i] <= 'Z') {
 			answer = answer + s[i];

@@ -10,86 +10,75 @@ int main() {
 
 	string s = "300 100 3 1 - * + 100 2 / +";
 
-	vector<string> input = { "300", "100", "3", "1", "-", "*", "+", "100", "2", "/", "+"};
+	vector<string> input = { "300", "100", "3", "1", "-", "*", "+", "100", "2", "/", "+" };
+	//vector<string> input = { "50", "100", "*", "30", "20", "-","+"};
+	//vector<string> input = { "50", "2", "*" , "50", "10", "*", "2", "3", "*", "+", "+" };
 	string answer = "";
 
-	vector<string> oper = { "+", "-", "*", "/" };
-
-	bool is_oper = false;
 	int a = -1;
 	int b = -1;
 	int tmp = -1;
 
 	for (int i = 0; i < input.size(); i++)
 	{
-		is_oper = false;
-		for (int j = 0; j < oper.size(); j++)
+
+		if (input[i] == "+")
 		{
-			if ( input[i]== oper[j])
-			{
-				is_oper = true;
-				break;
-			}
+			b = stack.back();
+			stack.pop_back();
+
+			a = stack.back();
+			stack.pop_back();
+
+			tmp = a + b;
+			stack.push_back(tmp);
+
 		}
-
-		if (is_oper) 
+		else if (input[i] == "-")
 		{
-			if (input[i] == "+")
-			{
-				b = stack.back();
-				stack.pop_back();
+			b = stack.back();
+			stack.pop_back();
 
-				a = stack.back();
-				stack.pop_back();
+			a = stack.back();
+			stack.pop_back();
 
-				tmp = a + b;
-				stack.push_back(tmp);
-			}
-			else if (input[i] == "-")
-			{
-				b = stack.back();
-				stack.pop_back();
+			tmp = a - b;
+			stack.push_back(tmp);
+		}
+		else if (input[i] == "*")
+		{
+			b = stack.back();
+			stack.pop_back();
 
-				a = stack.back();
-				stack.pop_back();
+			a = stack.back();
+			stack.pop_back();
 
-				tmp = a - b;
-				stack.push_back(tmp);
-			}
-			else if (input[i] == "*")
-			{
-				b = stack.back();
-				stack.pop_back();
+			tmp = a * b;
+			stack.push_back(tmp);
+		}
+		else if (input[i] == "/")
+		{
+			b = stack.back();
+			stack.pop_back();
 
-				a = stack.back();
-				stack.pop_back();
+			a = stack.back();
+			stack.pop_back();
 
-				tmp = a * b;
-				stack.push_back(tmp);
-			}
-			else if (input[i] == "/")
-			{
-				b = stack.back();
-				stack.pop_back();
-
-				a = stack.back();
-				stack.pop_back();
-
-				tmp = a / b;
-				stack.push_back(tmp);
-			}
-			
+			tmp = a / b;
+			stack.push_back(tmp);
 		}
 		else
 		{
 			stack.push_back(stoi(input[i]));
-			
 		}
-		
 
 	}
-	
-	cout << stack[0] << endl;
 
-	
+	for (int i = 0; i < stack.size(); i++)
+	{
+		cout << stack[i] << endl;
+	}
+
+
+
 }
